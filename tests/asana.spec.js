@@ -75,7 +75,8 @@ test.describe('Loop technical evaluation - data-driven task validation', () => {
       await expect(taskCard).toContainText(testCase.task);
 
       for (const tag of testCase.tags) {
-        await expect(taskCard).toContainText(tag);
+        const tagLocator = taskCard.locator('span').getByText(tag, { exact: true });
+        await expect(tagLocator).toBeVisible();
       }
     });
   }
